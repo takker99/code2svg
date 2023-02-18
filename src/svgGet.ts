@@ -63,7 +63,7 @@ export const svgGet: RouterMiddleware<
         <style>
           ${
     nowrap ? "" : "pre{white-space:pre-wrap}"
-  }code{font-family:Menlo,Monaco,Consolas,"Courier New",monospace}pre code.hljs{display:block;overflow-x:auto;padding:1em}code.hljs{padding:3px 5px}${lightCSS}${
+  }body,pre{margin:unset}code{font-family:Menlo,Monaco,Consolas,"Courier New",monospace}pre code.hljs{display:block;overflow-x:auto;padding:1em}${lightCSS}${
     light === dark ? "" : `@media(prefers-color-scheme:dark){${darkCSS}}`
   }
         </style>

@@ -1,0 +1,17 @@
+{
+  "tasks": {
+    "dev": "deno run --allow-net --watch dev_server.ts",
+    "deploy": "yarn run vercel",
+    "genTheme": "deno run --allow-net=api.github.com,raw.githubusercontent.com --allow-write=./src/theme.json generateThemeJson.ts",
+    "check": "deno fmt --check && deno lint && deno check api/main.ts dev_server.ts generateThemeJson.ts",
+    "lint": "deno fmt && deno lint"
+  },
+  "compilerOptions": {
+    "lib": ["esnext", "dom", "dom.iterable", "dom.asyncIterable", "deno.ns"]
+  },
+  "fmt": {
+    "files": {
+      "exclude": ["src/theme.json"]
+    }
+  }
+}

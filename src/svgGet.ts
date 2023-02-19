@@ -10,6 +10,9 @@ import { slice } from "./slice.ts";
 import { parseParams } from "./parseParams.ts";
 import themes from "./theme.json" assert { type: "json" };
 
+/** fontの幅/高さ */
+const fontSizeRatio = 0.55;
+const lineHeight = 1.2;
 export const svgGet: RouterMiddleware<
   "/svg/:options?/:proto(http:/|https:/)/:host/:path*"
 > = async (context) => {
@@ -43,11 +46,11 @@ export const svgGet: RouterMiddleware<
     ...text.split("\n").slice(start, end + 1).map((line) => line.length),
   );
   const height = `${
-    ((snippet.length + blanks) * 1.2) * fontSize.length
+    ((snippet.length + blanks) * lineHeight) * fontSize.length
   }${fontSize.unit}`;
   const width: string = width_
     ? `${width_.length}${width_.unit}`
-    : `${maxLineChars * fontSize.length * 0.6}${fontSize.unit}`;
+    : `${maxLineChars * fontSize.length * fontSizeRatio}${fontSize.unit}`;
 
   const light = isTheme(lightTheme) ? lightTheme : "github";
   const lightCSS = themes[light] ?? themes.github;
@@ -71,7 +74,7 @@ export const svgGet: RouterMiddleware<
         <style>
           ${
     nowrap ? "" : "pre{white-space:pre-wrap}"
-  }body,pre{margin:unset}code{display:block;overflow-x:auto;/*padding:1em;*/font-family:Menlo,Monaco,Consolas,"Courier New",monospace;font-size:${fontSize.length}${fontSize.unit};line-height:1.2;}${lightCSS}${
+  }body,pre{margin:unset}code{display:block;overflow-x:auto;/*padding:1em;*/font-family:Menlo,Monaco,Consolas,"Courier New",monospace;font-size:${fontSize.length}${fontSize.unit};line-height:${lineHeight};}${lightCSS}${
     light === dark ? "" : `@media(prefers-color-scheme:dark){${darkCSS}}`
   }
         </style>

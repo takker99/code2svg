@@ -16,12 +16,13 @@ export const svgGet: RouterMiddleware<
   const {
     url,
     range = [0, Infinity],
-    width = 800,
-    height: height_,
+    fontSize = { length: 1, unit: "em" },
+    width: width_,
     lightTheme,
     darkTheme,
     language,
     nowrap,
+    blanks = 0,
   } = parseParams(
     context.params,
   );
@@ -38,7 +39,15 @@ export const svgGet: RouterMiddleware<
     : lowlight.highlightAuto(text);
   const [start, end] = range.map((l) => Math.max(0, l));
   const snippet = slice(start, end, splitNode(tree));
-  const height = height_ ?? `${snippet.length * 20}`;
+  const maxLineChars = Math.max(
+    ...text.split("\n").slice(start, end + 1).map((line) => line.length),
+  );
+  const height = `${
+    ((snippet.length + blanks) * 1.2) * fontSize.length
+  }${fontSize.unit}`;
+  const width: string = width_
+    ? `${width_.length}${width_.unit}`
+    : `${maxLineChars * fontSize.length * 0.6}${fontSize.unit}`;
 
   const light = isTheme(lightTheme) ? lightTheme : "github";
   const lightCSS = themes[light] ?? themes.github;
@@ -57,23 +66,22 @@ export const svgGet: RouterMiddleware<
   <!-- ${url} -->
   <!-- light theme: ${light} -->
   <!-- dark theme: ${dark} -->
-  <foreignObject x="0" y="0" width="100%" height="100%">
+  <foreignObject class="hljs" x="0" y="0" width="100%" height="100%">
     <html xmlns="http://www.w3.org/1999/xhtml">
-      <head>
         <style>
           ${
     nowrap ? "" : "pre{white-space:pre-wrap}"
-  }body,pre{margin:unset}code{font-family:Menlo,Monaco,Consolas,"Courier New",monospace}pre code.hljs{display:block;overflow-x:auto;padding:1em}${lightCSS}${
+  }body,pre{margin:unset}code{display:block;overflow-x:auto;/*padding:1em;*/font-family:Menlo,Monaco,Consolas,"Courier New",monospace;font-size:${fontSize.length}${fontSize.unit};line-height:1.2;}${lightCSS}${
     light === dark ? "" : `@media(prefers-color-scheme:dark){${darkCSS}}`
   }
         </style>
-      </head>
-      <body><pre><code class="hljs" data-language="${tree.data.language}">${
+       <pre><code class="hljs" data-language="${tree.data.language}" data-max-line-chars="${maxLineChars}">${
     toHtml(snippet, {
       closeEmptyElements: true,
       closeSelfClosing: true,
     })
-  }</code></pre> </body></html></foreignObject></svg>`;
+  }</code></pre>
+    </html></foreignObject></svg>`;
 };
 
 const isTheme = (theme: string | undefined): theme is keyof typeof themes =>

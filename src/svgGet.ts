@@ -69,15 +69,15 @@ export const svgGet: RouterMiddleware<
   <!-- ${url} -->
   <!-- light theme: ${light} -->
   <!-- dark theme: ${dark} -->
-  <foreignObject class="hljs" x="0" y="0" width="100%" height="100%">
-    <html xmlns="http://www.w3.org/1999/xhtml">
-        <style>
-          ${
+  <style>
+    ${
     nowrap ? "" : "pre{white-space:pre-wrap}"
   }body,pre{margin:unset}code{display:block;overflow-x:auto;font-family:Menlo,Monaco,Consolas,"Courier New",monospace;font-size:${fontSize.length}${fontSize.unit};line-height:${lineHeight};}${lightCSS}${
     light === dark ? "" : `@media(prefers-color-scheme:dark){${darkCSS}}`
   }
-        </style>
+  </style>
+  <foreignObject class="hljs" x="0" y="0" width="100%" height="100%">
+    <html xmlns="http://www.w3.org/1999/xhtml">
        <pre><code class="hljs" data-language="${tree.data.language}" data-max-line-chars="${maxLineChars}">${
     toHtml(snippet, {
       closeEmptyElements: true,

@@ -74,7 +74,7 @@ export const svgGet: RouterMiddleware<
         <style>
           ${
     nowrap ? "" : "pre{white-space:pre-wrap}"
-  }body,pre{margin:unset}code{display:block;overflow-x:auto;/*padding:1em;*/font-family:Menlo,Monaco,Consolas,"Courier New",monospace;font-size:${fontSize.length}${fontSize.unit};line-height:${lineHeight};}${lightCSS}${
+  }body,pre{margin:unset}code{display:block;overflow-x:auto;font-family:Menlo,Monaco,Consolas,"Courier New",monospace;font-size:${fontSize.length}${fontSize.unit};line-height:${lineHeight};}${lightCSS}${
     light === dark ? "" : `@media(prefers-color-scheme:dark){${darkCSS}}`
   }
         </style>

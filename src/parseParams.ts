@@ -1,4 +1,5 @@
 import { RouterContext } from "./deps.ts";
+import { parseSVGLength, SVGLength } from "./svgLength.ts";
 
 export interface Params {
   url: string;
@@ -7,8 +8,9 @@ export interface Params {
   lightTheme?: string;
   darkTheme?: string;
   nowrap: boolean;
-  width?: string;
-  height?: string;
+  fontSize?: SVGLength;
+  width?: SVGLength;
+  blanks?: number;
 }
 
 export const parseParams = (
@@ -32,11 +34,14 @@ export const parseParams = (
         case "dark":
           parsed.darkTheme ??= value;
           break;
-        case "width":
-          parsed.width ??= value;
+        case "fontSize":
+          parsed.fontSize ??= parseSVGLength(value);
           break;
-        case "height":
-          parsed.height ??= value;
+        case "width":
+          parsed.width ??= parseSVGLength(value);
+          break;
+        case "blanks":
+          if (/^\d+$/.test(value)) parsed.blanks ??= parseInt(value);
           break;
         default:
           break;

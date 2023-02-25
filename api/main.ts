@@ -38,7 +38,7 @@ router
     );
   })
   .get(
-    "/svg/:options?/:proto(http:/?|https:/?)/:host/:path?",
+    "/svg/:options?/:proto(http:/?|https:/?)/:host/:path(.*)?",
     svgGet,
   );
 

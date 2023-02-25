@@ -15,11 +15,14 @@ export interface Params {
 
 export const parseParams = (
   params: RouterContext<
-    "/svg/:options?/:proto(http:/|https:/)/:host/:path*"
+    "/svg/:options?/:proto(http:/|https:/)/:host/:path?"
   >["params"],
 ): Params => {
   const { options = "", proto, host, path } = params;
-  const parsed: Params = { url: `${proto}/${host}/${path}`, nowrap: false };
+  const parsed: Params = {
+    url: `${proto}/${host}${path ? `/${path}` : ""}`,
+    nowrap: false,
+  };
   for (const option of options.split(",").map((option) => option.trim())) {
     if (option.includes("=")) {
       const [key, value] = option.split("=", 2);

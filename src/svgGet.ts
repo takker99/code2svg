@@ -14,7 +14,7 @@ import themes from "./theme.json" assert { type: "json" };
 const fontSizeRatio = 0.55;
 const lineHeight = 1.2;
 export const svgGet: RouterMiddleware<
-  "/svg/:options?/:proto(http:/|https:/)/:host/:path*"
+  "/svg/:options?/:proto(http:/?|https:/?)/:host/:path?"
 > = async (context) => {
   const {
     url,

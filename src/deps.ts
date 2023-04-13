@@ -5,7 +5,7 @@ export {
   green,
   red,
   yellow,
-} from "https://deno.land/std@0.182.0/fmt/colors.ts";
+} from "https://deno.land/std@0.183.0/fmt/colors.ts";
 
 export {
   Application,

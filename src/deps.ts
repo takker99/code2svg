@@ -5,7 +5,7 @@ export {
   green,
   red,
   yellow,
-} from "https://deno.land/std@0.186.0/fmt/colors.ts";
+} from "https://deno.land/std@0.188.0/fmt/colors.ts";
 
 export {
   Application,
@@ -20,8 +20,8 @@ export {
   STATUS_TEXT,
 } from "https://deno.land/x/oak@v12.4.0/mod.ts";
 
-import type { lowlight } from "https://esm.sh/lowlight@2.8.1/lib/all.js";
-export { lowlight } from "https://esm.sh/lowlight@2.8.1/lib/all.js";
+import type { lowlight } from "https://esm.sh/lowlight@2.9.0/lib/all.js";
+export { lowlight } from "https://esm.sh/lowlight@2.9.0/lib/all.js";
 export type Root = ReturnType<typeof lowlight.highlight>;
 export type {
   Comment,

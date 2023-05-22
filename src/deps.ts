@@ -18,7 +18,7 @@ export {
   type RouterMiddleware,
   Status,
   STATUS_TEXT,
-} from "https://deno.land/x/oak@v12.4.0/mod.ts";
+} from "https://deno.land/x/oak@v12.5.0/mod.ts";
 
 import type { lowlight } from "https://esm.sh/lowlight@2.9.0/lib/all.js";
 export { lowlight } from "https://esm.sh/lowlight@2.9.0/lib/all.js";

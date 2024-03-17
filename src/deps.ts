@@ -5,7 +5,7 @@ export {
   green,
   red,
   yellow,
-} from "https://deno.land/std@0.192.0/fmt/colors.ts";
+} from "https://deno.land/std@0.220.1/fmt/colors.ts";
 
 export {
   Application,
@@ -18,10 +18,10 @@ export {
   type RouterMiddleware,
   Status,
   STATUS_TEXT,
-} from "https://deno.land/x/oak@v12.5.0/mod.ts";
+} from "https://deno.land/x/oak@14.2.0/mod.ts";
 
-import type { lowlight } from "https://esm.sh/lowlight@2.9.0/lib/all.js";
-export { lowlight } from "https://esm.sh/lowlight@2.9.0/lib/all.js";
+import type { lowlight } from "https://esm.sh/lowlight@3.1.0/lib/all.js";
+export { lowlight } from "https://esm.sh/lowlight@3.1.0/lib/all.js";
 export type Root = ReturnType<typeof lowlight.highlight>;
 export type {
   Comment,
@@ -29,4 +29,4 @@ export type {
   ElementContent,
   Text,
 } from "https://esm.sh/v106/@types/hast@2.3.4/index.d.ts";
-export { toHtml } from "https://esm.sh/hast-util-to-html@8.0.4";
+export { toHtml } from "https://esm.sh/hast-util-to-html@9.0.0/";
